@@ -1,4 +1,0 @@
-27 - Simple + Effective Validation
-	a. create a validators.py
-	b. apply a function in the validators.py to either form.py or model.py eg) validate_category(value)
-	c. save a value entered as caplitalize before it is comitted
