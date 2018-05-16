@@ -33,6 +33,21 @@ Based on Class View
 		User = obj.owner.__class__
 		User.objects.all() return QS of users
 
+32 - LoginView: In order to view authentication is needed
+	a. from django.conf.urls import url, include in the root urls.py
+	b. Add url(r'^accounts/', include('django.contrib.auth.urls')) in the root urls.py
+	c. Add registration folder in the main template folder
+	d. Create registration forms, logged_out, login, password_reset_complete, password_reset_confirm, password_reset_done, password_reset_email, password_reset_form
+	e. Add LoginRequiredMixin class RestaurantCreateView(LoginRequiredMixin, CreateView)
+	f. include below in the class RestaurantCreateView 
+		login_url = '/accounts/login/'
+    	login_redirect_url = '/restaurants/create/' or LOGIN_REDIRECT_URL can be added to settings.py
+    g. Add EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' in the settings.py for email testing, it only works for existing users
+
+
+
+
+
 
 
 

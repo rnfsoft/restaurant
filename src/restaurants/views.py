@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import RestaurantLocation
 from .forms import RestaurantLocationCreateForm
@@ -29,7 +29,14 @@ class RestaurantDetailView(DetailView):
     queryset = RestaurantLocation.objects.all()
 
 
-class RestaurantCreateView(CreateView):
+class RestaurantCreateView(LoginRequiredMixin, CreateView):
     form_class = RestaurantLocationCreateForm
     template_name = 'restaurants/form.html'
-    success_url = "/restaurants/"
+    login_url = '/accounts/login/'
+    login_redirect_url = '/restaurants/create/'
+    success_url = '/restaurants/'
+
+    def form_valid(self, form):
+    	instance = form.save(commit=False)
+    	instance.owner = self.request.user
+    	return super(RestaurantCreateView, self).form_valid(form)
