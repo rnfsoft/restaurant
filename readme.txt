@@ -45,6 +45,16 @@ Based on Class View
     g. Add EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' in the settings.py for email testing, it only works for existing users
 
 
+33 - Using Reverse to Shortcut URLs
+	a. Add urls.py in the app
+	b. Add 
+		url(r'^create/$', RestaurantCreateView.as_view(), name='create'), 
+		url(r'^(?P<slug>[\w-]+)/$', RestaurantDetailView.as_view(), name='detail'),
+		url(r'$', RestaurantListView.as_view(), name='list'), must be the last if not detail page not working
+	c. url(r'^restaurants/', include('restaurants.urls', namespace='restaurants')) in the main urls.py
+	d. get_absolute_url in the model, pass namespace:name and slug
+	 
+
 
 
 
