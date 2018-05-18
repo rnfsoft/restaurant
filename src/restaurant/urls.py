@@ -27,11 +27,7 @@ urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name ='about' ),
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name ='contact' ),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    # url(r'^login/', LoginView.as_view(), name='login'),
-    # url(r'^logout/', LogoutView.as_view(), name='logout'),
-    # url(r'^password_reset/', PasswordResetView.as_view(), name='password_reset'),
-    # url(r'^password_reset_done/',PasswordResetDoneView.as_view(), name='password_reset_done'),
-    # url(r'^password_reset_confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    # url(r'^password_reset_complete/',PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    url(r'^restaurants/', include('restaurants.urls', namespace='restaurants')), 
+    url(r'^restaurants/', include('restaurants.urls', namespace='restaurants')),
+     url(r'^menus/', include('menus.urls', namespace='menus')),
+
 ]

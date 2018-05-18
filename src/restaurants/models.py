@@ -25,11 +25,8 @@ class RestaurantLocation(models.Model):
 		return reverse('restaurants:detail', kwargs={'slug': self.slug})
 
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):
-	#print ("sender", sender)
-	#print("instance.slug", instance.slug)
 	instance.category = instance.category.capitalize()
 	if not instance.slug: # == instance.slug is None or is this not meanigful?
 		instance.slug = unique_slug_generator(instance)
-		#print (instance.slug)
 
 pre_save.connect(rl_pre_save_receiver, sender=RestaurantLocation)
